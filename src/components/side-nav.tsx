@@ -4,14 +4,18 @@ import type { User } from "@/types/user"
 
 import { ClockCounterClockwise, type IconWeight } from "@phosphor-icons/react"
 import {
-  ChartBar, CirclesThree,
-  ForkKnife, HourglassSimpleHigh, ListNumbers, MoneyWavy,
+  ChartBar,
+  CirclesThree,
+  ForkKnife,
+  HourglassSimpleHigh,
+  ListNumbers,
+  MoneyWavy,
   Percent,
   Receipt,
   ShoppingCartSimple,
   Storefront,
   Tilde,
-  UserCircle
+  UserCircle,
 } from "@phosphor-icons/react/dist/ssr"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -27,6 +31,11 @@ type Link = {
   label: string
 }
 
+type LinkGroup = {
+  links: Link[]
+  title: string
+}
+
 const iconProps: {
   className: string
   weight: IconWeight
@@ -35,69 +44,91 @@ const iconProps: {
   weight: "duotone",
 }
 
-const links: Link[] = [
+export const linkGroups: LinkGroup[] = [
   {
-    href: "/dashboard/orders/waiting",
-    icon: <HourglassSimpleHigh {...iconProps} />,
-    label: "Em aberto"
-  },{
-    href: "/dashboard/orders/history",
-    icon: <ClockCounterClockwise {...iconProps} />,
-    label: "Histórico"
-  },{
-    href: "/dashboard/orders/report",
-    icon: <Tilde {...iconProps} />,
-    label: "Relatório"
+    links: [
+      {
+        href: "/dashboard/orders/waiting",
+        icon: <HourglassSimpleHigh {...iconProps} />,
+        label: "Em aberto",
+      },
+      {
+        href: "/dashboard/orders/history",
+        icon: <ClockCounterClockwise {...iconProps} />,
+        label: "Histórico",
+      },
+      {
+        href: "/dashboard/orders/report",
+        icon: <Tilde {...iconProps} />,
+        label: "Relatório",
+      },
+    ],
+    title: "Pedidos",
   },
   {
-    href: "/dashboard/menu/items",
-    icon: <ListNumbers {...iconProps} />,
-    label: "Itens",
+    links: [
+      {
+        href: "/dashboard/menu/items",
+        icon: <ListNumbers {...iconProps} />,
+        label: "Itens",
+      },
+      {
+        href: "/dashboard/menu/categories",
+        icon: <ForkKnife {...iconProps} />,
+        label: "Categorias",
+      },
+      {
+        href: "/dashboard/menu/promotions",
+        icon: <Percent {...iconProps} />,
+        label: "Promoções & Ofertas",
+      },
+    ],
+    title: "Cardápio",
   },
   {
-    href: "/dashboard/menu/categories",
-    icon: <ForkKnife {...iconProps} />,
-    label: "Categorias",
+    links: [
+      {
+        href: "/dashboard/finance/summary",
+        icon: <ChartBar {...iconProps} />,
+        label: "Resumo",
+      },
+      {
+        href: "/dashboard/finance/revenue",
+        icon: <MoneyWavy {...iconProps} />,
+        label: "Receitas",
+      },
+      {
+        href: "/dashboard/finance/expenses",
+        icon: <ShoppingCartSimple {...iconProps} />,
+        label: "Despesas",
+      },
+      {
+        href: "/dashboard/finance/balance",
+        icon: <Receipt {...iconProps} />,
+        label: "Extratos",
+      },
+    ],
+    title: "Finanças",
   },
   {
-    href: "/dashboard/menu/promotions",
-    icon: <Percent {...iconProps} />,
-    label: "Promoções & Ofertas",
-  },
-  {
-    href: "/dashboard/finnance/summary",
-    icon: <ChartBar {...iconProps} />,
-    label: "Resumo",
-  },
-  {
-    href: "/dashboard/finnance/revenue",
-    icon: <MoneyWavy {...iconProps} />,
-    label: "Receitas",
-  },
-  {
-    href: "/dashboard/finnance/expenses",
-    icon: <ShoppingCartSimple {...iconProps} />,
-    label: "Despesas",
-  },
-  {
-    href: "/dashboard/finnance/balance",
-    icon: <Receipt {...iconProps} />,
-    label: "Extratos"
-  },
-  {
-    href: "/dashboard/settings/business",
-    icon: <Storefront {...iconProps} />,
-    label: "Informações do Negócio",
-  },
-  {
-    href: "/dashboard/settings/account",
-    icon: <UserCircle {...iconProps} />,
-    label: "Configurações de Conta",
-  },
-  {
-    href: "/dashboard/settings/integrations",
-    icon: <CirclesThree {...iconProps} />,
-    label: "Integrações",
+    links: [
+      {
+        href: "/dashboard/settings/business",
+        icon: <Storefront {...iconProps} />,
+        label: "Informações do Negócio",
+      },
+      {
+        href: "/dashboard/settings/account",
+        icon: <UserCircle {...iconProps} />,
+        label: "Configurações de Conta",
+      },
+      {
+        href: "/dashboard/settings/integrations",
+        icon: <CirclesThree {...iconProps} />,
+        label: "Integrações",
+      },
+    ],
+    title: "Configurações",
   },
 ]
 
@@ -109,14 +140,28 @@ const renderLink = (link: Link, pathname: string) => {
   return (
     <Link
       className={twMerge(
-        "flex items-center space-x-3 rounded-lg px-3 py-1.5",
-        isLinkActive(link.href, pathname) && "bg-background"
+        "-ml-3 flex items-center space-x-3 rounded-lg px-3 py-1.5 text-muted-foreground",
+        isLinkActive(link.href, pathname) && "text-brand bg-background"
       )}
       href={link.href}
       key={link.label}
     >
-      {link.icon}
-      <span className="text-sm">{link.label}</span>
+      <div
+        className={twMerge(
+          "text-sm text-muted-foreground",
+          isLinkActive(link.href, pathname) && "text-brand"
+        )}
+      >
+        {link.icon}
+      </div>
+      <span
+        className={twMerge(
+          "text-sm text-primary",
+          isLinkActive(link.href, pathname) && "text-brand"
+        )}
+      >
+        {link.label}
+      </span>
     </Link>
   )
 }
@@ -125,15 +170,21 @@ export const SideNav = (props: { user: User }) => {
   const pathname = usePathname()
 
   return (
-    <div className="z-10 hidden h-screen w-80 flex-col justify-between border-r px-4 py-6 md:flex">
-      <div className="flex flex-col">
-        <Link className="ml-3" href="/dashboard">
+    <div className="bg-background-accent z-10 hidden h-screen w-72 flex-col justify-between border-r px-4 py-6 md:flex">
+      <div className="ml-1.5 flex flex-col">
+        <Link href="/dashboard">
           <Icons.logo className="size-7" />
         </Link>
 
-        <div className="mt-6 flex flex-col space-y-2">
-          {links.slice(0, -1).map((link) => renderLink(link, pathname))}
-        </div>
+        {linkGroups.map((group) => (
+          <div className="mt-8 flex flex-col gap-2">
+            <p className="text-muted-foreground text-xs">{group.title}</p>
+
+            <div className="flex flex-col space-y-2">
+              {group.links.map((link) => renderLink(link, pathname))}
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="flex flex-col space-y-2">

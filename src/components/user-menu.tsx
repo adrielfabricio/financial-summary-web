@@ -32,10 +32,8 @@ export const UserMenu = ({ user }: Props) => {
         className="group flex w-full items-center justify-between rounded-none px-5 py-2"
         href={href}
       >
-        <span className="text-muted-foreground">{label}</span>
-        {Icon && (
-          <Icon className="text-muted-foreground size-4" weight="light" />
-        )}
+        <span className="text-primary">{label}</span>
+        {Icon && <Icon className="text-primary size-4" weight="light" />}
       </Link>
     </DropdownMenuItem>
   )
@@ -50,13 +48,11 @@ export const UserMenu = ({ user }: Props) => {
             </div>
             <div
               className={twMerge(
-                "group-aria-current/item:text-foreground min-w-[128px] text-sm text-muted-foreground"
+                "group-aria-current/item:text-primary min-w-[128px] text-sm text-primary"
               )}
             >
               <p className="text-sm font-medium">{user.name}</p>
-              <p className="text-muted-foreground text-xs font-normal">
-                {user.email}
-              </p>
+              <p className="text-primary text-xs font-normal">{user.email}</p>
             </div>
           </div>
         </DropdownMenuTrigger>
@@ -64,11 +60,11 @@ export const UserMenu = ({ user }: Props) => {
           align="end"
           className="m-0 mt-2 w-64 p-0 shadow-md"
         >
-          <DropdownMenuLabel className="text-muted-foreground px-5 py-4 text-sm font-normal">
+          <DropdownMenuLabel className="text-primary px-5 py-4 text-sm font-normal">
             <p className="text-sm font-semibold text-black">
               {user.name.split(" ")[0]}
             </p>
-            <p className="text-muted-foreground text-[14px]">{user.email}</p>
+            <p className="text-primary text-[14px]">{user.email}</p>
           </DropdownMenuLabel>
 
           <DropdownMenuGroup>
@@ -83,10 +79,7 @@ export const UserMenu = ({ user }: Props) => {
           >
             <div className="group flex w-full items-center justify-between rounded-none px-5 py-2">
               <span>Sair</span>
-              <SignOut
-                className="text-muted-foreground size-4"
-                weight="light"
-              />
+              <SignOut className="text-primary size-4" weight="light" />
             </div>
           </DropdownMenuItem>
         </DropdownMenuContent>

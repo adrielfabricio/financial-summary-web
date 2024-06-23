@@ -133,8 +133,14 @@ const config = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        background: "hsl(var(--background))",
+        background: {
+          accent: "#F7F7F8",
+          DEFAULT: "hsl(var(--background))",
+        },
         border: "hsl(var(--border))",
+        brand: {
+          DEFAULT: "#F96A2E",
+        },
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
