@@ -3,7 +3,10 @@ import { NextRequest, NextResponse } from "next/server"
 export async function middleware(request: NextRequest) {
   console.log("Hello from middleware!", request.nextUrl.pathname)
 
-  if (request.nextUrl.pathname === "/") {
+  if (
+    request.nextUrl.pathname === "/" ||
+    request.nextUrl.pathname === "/dashboard"
+  ) {
     return NextResponse.redirect(
       new URL("/dashboard/finance/summary", request.nextUrl.origin)
     )

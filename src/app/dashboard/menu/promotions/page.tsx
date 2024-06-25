@@ -1,3 +1,4 @@
+import { InConstruction } from "@/components/in-construction"
 import { PageWrapper } from "@/components/page-wrapper"
 
 export default function FinanceSummary() {
@@ -9,7 +10,7 @@ export default function FinanceSummary() {
       ]}
       title="Promoções & Ofertas"
     >
-      Finance Summary
+      <InConstruction />
     </PageWrapper>
   )
 }
