@@ -3,6 +3,8 @@
 
 Este é o projeto Financial Summary Web, desenvolvido com Next.js, TypeScript, Shadcn/ui e Nextui para componentes.
 
+![Screenshot de demonstração](images/dash.png "Screenshot de demonstração")
+
 ## Tecnologias Utilizadas
 
 - **Next.js:** Framework React para desenvolvimento de aplicações web.

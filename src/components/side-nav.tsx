@@ -177,7 +177,7 @@ export const SideNav = (props: { user: User }) => {
         </Link>
 
         {linkGroups.map((group) => (
-          <div className="mt-8 flex flex-col gap-2">
+          <div className="mt-8 flex flex-col gap-2" key={group.title}>
             <p className="text-muted-foreground text-xs">{group.title}</p>
 
             <div className="flex flex-col space-y-2">
