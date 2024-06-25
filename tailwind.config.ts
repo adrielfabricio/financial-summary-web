@@ -40,6 +40,11 @@ const config = {
           },
         },
         light: {
+          colors: {
+            primary: {
+              DEFAULT: "#F96A2E",
+            },
+          },
           layout: {
             borderWidth: {
               default: "1px",

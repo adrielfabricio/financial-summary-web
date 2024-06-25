@@ -13,3 +13,7 @@ export function getServerComponentBaseUrl() {
 
   return `${protocol}://${host}/api/`
 }
+
+export const isValidDate = (date: string) => {
+  return date.match(/^\d{4}-\d{2}-\d{2}$/)
+}

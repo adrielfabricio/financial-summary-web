@@ -141,7 +141,7 @@ const renderLink = (link: Link, pathname: string) => {
     <Link
       className={twMerge(
         "-ml-3 flex items-center space-x-3 rounded-lg px-3 py-1.5 text-muted-foreground",
-        isLinkActive(link.href, pathname) && "text-brand bg-background"
+        isLinkActive(link.href, pathname) && "bg-background text-brand"
       )}
       href={link.href}
       key={link.label}
