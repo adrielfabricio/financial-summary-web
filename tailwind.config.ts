@@ -67,6 +67,20 @@ const config = {
 
   prefix: "",
   safelist: [
+    ...["[#f96a2e]"].flatMap((customColor) => [
+      `bg-${customColor}`,
+      `border-${customColor}`,
+      `hover:bg-${customColor}`,
+      `hover:border-${customColor}`,
+      `hover:text-${customColor}`,
+      `fill-${customColor}`,
+      `ring-${customColor}`,
+      `stroke-${customColor}`,
+      `text-${customColor}`,
+      `ui-selected:bg-${customColor}`,
+      `ui-selected:border-${customColor}`,
+      `ui-selected:text-${customColor}`,
+    ]),
     {
       pattern:
         /^(bg-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
@@ -95,6 +109,7 @@ const config = {
         /^(fill-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose)-(?:50|100|200|300|400|500|600|700|800|900|950))$/,
     },
   ],
+
   theme: {
     container: {
       center: true,
@@ -162,7 +177,7 @@ const config = {
             DEFAULT: colors.gray[800],
           },
           brand: {
-            DEFAULT: colors.blue[500],
+            DEFAULT: "#F96A2E",
             emphasis: colors.blue[400],
             faint: "#0B1229",
             inverted: colors.blue[950],
@@ -216,12 +231,12 @@ const config = {
             DEFAULT: colors.gray[200],
           },
           brand: {
-            DEFAULT: colors.blue[500],
-            emphasis: colors.blue[700],
-            faint: colors.blue[50],
-            inverted: colors.white,
-            muted: colors.blue[200],
-            subtle: colors.blue[400],
+            DEFAULT: "#F96A2E",
+            emphasis: "#F96A2E",
+            faint: "#F96A2E",
+            inverted: "#F96A2E",
+            muted: "#F96A2E",
+            subtle: "#F96A2E",
           },
           content: {
             DEFAULT: colors.gray[500],

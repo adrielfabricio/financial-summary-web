@@ -1,8 +1,15 @@
+import type { Metadata } from "next"
+
 import { ErrorPage } from "@/components/error-page"
 import { PageWrapper } from "@/components/page-wrapper"
 import { isValidDate } from "@/lib/utils"
 
 import { Actions } from "./_components/actions"
+import { Charts } from "./_components/charts"
+
+export const metadata: Metadata = {
+  title: "Resumo Financeiro",
+}
 
 export default async function FinanceSummary({
   searchParams,
@@ -41,7 +48,7 @@ export default async function FinanceSummary({
     return <ErrorPage />
   }
 
-  console.log(salesByPeriod)
+  console.log(`${salesByPeriod.length} sales fetched.`)
 
   return (
     <PageWrapper
@@ -52,7 +59,7 @@ export default async function FinanceSummary({
       ]}
       title="Resumo Financeiro"
     >
-      Finance Summary
+      <Charts sales={salesByPeriod} />
     </PageWrapper>
   )
 }
